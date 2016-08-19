@@ -14,19 +14,37 @@ docker -t build docker-beets .
 
 ## Docker run example
 
+Clean all files in current directory and import:
+
 ```sh
-# Clean all files in current directory and import
-docker run -u "$(id -u):$(id -g)" -v $(pwd):/import -v $HOME/.config/beets:/config -v $HOME/music:/music --rm docker-beets
+docker run --rm \
+  -u "$(id -u):$(id -g)" \
+  -v $(pwd):/import \
+  -v $HOME/.config/beets:/config \
+  -v $HOME/music:/music \
+  fortesdotcom/docker-beets
 ```
 
 If you'd like to run interactively (useful for albums that do not match automatically):
 
 ```sh
-docker run -u "$(id -u):$(id -g)" -v $(pwd):/import -v $HOME/.config/beets:/config -v $HOME/music:/music --rm --it docker-beets clean-and-import
+docker run --rm -it \
+  -u "$(id -u):$(id -g)" \
+  -v $(pwd):/import \
+  -v $HOME/.config/beets:/config \
+  -v $HOME/music:/music \
+  fortesdotcom/docker-beets \
+  clean-and-import
 ```
 
 Or maybe you just want to list out your albums in reverse chronological order:
 
 ```sh
-docker run -u "$(id -u):$(id -g)" -v $(pwd):/import -v $HOME/.config/beets:/config -v $HOME/music:/music --rm --it docker-beets beet ls -a year-
+docker run --rm -it \
+  -u "$(id -u):$(id -g)" \
+  -v $(pwd):/import \
+  -v $HOME/.config/beets:/config \
+  -v $HOME/music:/music \
+  fortesdotcom/docker-beets \
+  beet ls -a year-
 ```
