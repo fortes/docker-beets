@@ -22,7 +22,8 @@ docker run --rm \
   -v $(pwd):/import \
   -v $HOME/.config/beets:/config \
   -v $HOME/music:/music \
-  fortesdotcom/docker-beets
+  fortesdotcom/docker-beets \
+  clean-and-import -q
 ```
 
 If you'd like to run interactively (useful for albums that do not match automatically):
@@ -48,3 +49,8 @@ docker run --rm -it \
   fortesdotcom/docker-beets \
   beet ls -a year-
 ```
+
+# Changelog
+
+* 2016-12-20: Move to Debian Jessie. `clean-and-import` no longer default command.
+* 2016-08-19: First release.
