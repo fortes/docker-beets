@@ -9,7 +9,22 @@ The big difference between this and other containers for beets is that you can r
 ```sh
 git clone https://github.com/fortes/docker-beets
 cd docker-beets
-docker -t build docker-beets .
+docker build -t docker-beets .
+```
+
+## Start Container
+
+Start beets web interface and leave it running:
+
+```sh
+docker create \
+  --name=beets \
+  -p 8337:8337 \
+  -v $HOME/.config/beets:/config \
+  -v $HOME/downloads:/import \
+  -v $HOME/music:/music \
+  --restart=unless-stopped \
+  fortesdotcom/docker-beets
 ```
 
 ## Docker run example
@@ -17,40 +32,30 @@ docker -t build docker-beets .
 Clean all files in current directory and import:
 
 ```sh
-docker run --rm \
-  -u "$(id -u):$(id -g)" \
-  -v $(pwd):/import \
-  -v $HOME/.config/beets:/config \
-  -v $HOME/music:/music \
-  fortesdotcom/docker-beets \
+docker exec -u "$(id -u):$(id -g)" -it beets \
   clean-and-import -q
 ```
 
 If you'd like to run interactively (useful for albums that do not match automatically):
 
 ```sh
-docker run --rm -it \
-  -u "$(id -u):$(id -g)" \
-  -v $(pwd):/import \
-  -v $HOME/.config/beets:/config \
-  -v $HOME/music:/music \
-  fortesdotcom/docker-beets \
+docker exec -u "$(id -u):$(id -g)" -it beets \
   clean-and-import
 ```
 
 Or maybe you just want to list out your albums in reverse chronological order:
 
 ```sh
-docker run --rm -it \
-  -u "$(id -u):$(id -g)" \
-  -v $(pwd):/import \
-  -v $HOME/.config/beets:/config \
-  -v $HOME/music:/music \
-  fortesdotcom/docker-beets \
+docker exec -u "$(id -u):$(id -g)" -it beets \
   beet ls -a year-
 ```
 
 # Changelog
 
+* 2018-08-10: Bunch of stuff:
+  * `beet web` is now default command, usage instructions completely changed
+  * Use Python 3
+  * Add ImageMagick for album art resizing.
+  * Expose port `8337` for web
 * 2016-12-20: Move to Debian Jessie. `clean-and-import` no longer default command.
 * 2016-08-19: First release.

@@ -2,8 +2,8 @@ FROM debian:stretch
 
 RUN apt-get update && \
   apt-get install -y --no-install-recommends \
-    python-pip python-setuptools mp3val bs1770gain && \
-  pip install -U wheel beautifulsoup4 beets flask pyacoustid pylast requests && \
+    python3-pip python3-setuptools mp3val bs1770gain imagemagick && \
+  pip3 install -U wheel beautifulsoup4 beets flask pyacoustid pylast requests && \
   rm -rf /var/lib/apt/lists/*
 
 VOLUME /config /import /music
@@ -14,4 +14,6 @@ WORKDIR /import
 
 COPY ./clean-and-import.sh /usr/bin/clean-and-import
 
-CMD ["/bin/bash"]
+EXPOSE 8337
+
+CMD ["beet", "web"]
