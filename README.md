@@ -52,6 +52,8 @@ docker exec -u "$(id -u):$(id -g)" -it beets \
 
 # Changelog
 
+* 2019-05-17: Beets 1.4.8
+* 2018-08-21: Add `beets-pitchfork` plugin
 * 2018-08-10: Bunch of stuff:
   * `beet web` is now default command, usage instructions completely changed
   * Use Python 3
