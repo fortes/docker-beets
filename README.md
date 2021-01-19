@@ -52,6 +52,7 @@ docker exec -u "$(id -u):$(id -g)" -it beets \
 
 # Changelog
 
+* 2021-01-19: Beets 1.4.9, build on Debian Buster
 * 2019-05-17: Beets 1.4.8
 * 2018-08-21: Add `beets-pitchfork` plugin
 * 2018-08-10: Bunch of stuff:
