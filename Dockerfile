@@ -1,8 +1,8 @@
-FROM debian:buster
+FROM debian:bullseye
 
 RUN apt-get update && \
   apt-get install -y --no-install-recommends \
-    python3-pip python3-setuptools mp3val bs1770gain imagemagick && \
+    python3-pip python3-setuptools mp3val ffmpeg imagemagick && \
   pip3 install -U wheel beautifulsoup4 beets flask pyacoustid pylast \
     requests beets-pitchfork lxml && \
   rm -rf /var/lib/apt/lists/*

@@ -1,6 +1,6 @@
-# Beets + mp3val + bs1770gain
+# Beets + mp3val
 
-`mp3val`, `bs1770gain`, and `beets` in a container for easy music organization from your favorite mixtape sites.
+`mp3val` and `beets` in a container for easy music organization from your favorite mixtape sites.
 
 The big difference between this and other containers for beets is that you can run `mp3val` on the files beforehand and actually calculate gain info. Most people probably don't care though.
 
@@ -52,6 +52,7 @@ docker exec -u "$(id -u):$(id -g)" -it beets \
 
 # Changelog
 
+* 2022-01-01: Beets 1.6.0, build on Debian Bullseye, remove deprecated bs1700gain
 * 2021-01-19: Beets 1.4.9, build on Debian Buster
 * 2019-05-17: Beets 1.4.8
 * 2018-08-21: Add `beets-pitchfork` plugin
